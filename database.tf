@@ -13,8 +13,8 @@ resource "aws_db_instance" "life_manager_db" {
   allocated_storage      = 5
   engine                 = "postgres"
   engine_version         = "12"
-  username               = "user"
-  password               = "password"
+  username               = "mainuser"
+  password               = "mainpassword"
   db_subnet_group_name   = aws_db_subnet_group.quizhero_db_subnet_group.name
   vpc_security_group_ids = ["sg-099977c6b7814b467"]
   apply_immediately      = true
