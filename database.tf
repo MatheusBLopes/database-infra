@@ -27,5 +27,5 @@ resource "aws_db_instance" "postgres" {
 
 # Output database connection details
 output "database_url" {
-  value = aws_db_instance.life_manager_db.endpoint
+  value = aws_db_instance.postgres.endpoint
 }
