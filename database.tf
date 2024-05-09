@@ -6,20 +6,23 @@ resource "aws_db_subnet_group" "quizhero_db_subnet_group" {
     ]
 }
 
-resource "aws_db_instance" "life_manager_db" {
+resource "aws_db_instance" "postgres" {
   identifier             = "quizhero"
-  db_name                = "quizhero"
-  instance_class         = "db.t3.micro"
-  allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "12"
   username               = "mainuser"
   password               = "mainpassword"
+  db_name                = "quizhero"
+  allocated_storage      = 10
+  engine_version         = "15.6"
+  instance_class         = "db.t3.micro"
+  parameter_group_name   = "default.postgres15"
+  publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.quizhero_db_subnet_group.name
   vpc_security_group_ids = ["sg-099977c6b7814b467"]
-  apply_immediately      = true
-  publicly_accessible    = true
+  storage_type           = "gp2"
   skip_final_snapshot    = true
+
+  depends_on = [ aws_db_subnet_group.quizhero_db_subnet_group ]
 }
 
 # Output database connection details
