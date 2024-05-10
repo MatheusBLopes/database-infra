@@ -14,6 +14,10 @@ resource "aws_db_parameter_group" "db_parameters" {
     name  = "rds.force_ssl"
     value = "0"
   }
+  parameter {
+    name  = "password_encryption"
+    value = "MD5"
+  }
 }
 
 resource "aws_db_instance" "postgres" {
