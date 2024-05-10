@@ -1,10 +1,8 @@
-resource "aws_db_subnet_group" "quizhero_db_subnet_group" {
+resource "aws_db_subnet_group" "db_subnet_group" {
   name = "quizhero-db-subnet-group"
   subnet_ids = [
-    "subnet-07e2731634294e6cb",
-    "subnet-0b137902f4a66a56b",
-    "subnet-06f1d8653e42a9657",
-    "subnet-0af2492de458cb01a",
+    "subnet-084f1609a3253535e",
+    "subnet-0a0072f0b6788185e"
     ]
 }
 
@@ -19,12 +17,12 @@ resource "aws_db_instance" "postgres" {
   instance_class         = "db.t3.micro"
   parameter_group_name   = "default.postgres15"
   publicly_accessible    = true
-  db_subnet_group_name   = aws_db_subnet_group.quizhero_db_subnet_group.name
-  vpc_security_group_ids = ["sg-07bd428dd3fd329a6"]
+  db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
+  vpc_security_group_ids = ["sg-03554f9ec2c87c30b"]
   storage_type           = "gp2"
   skip_final_snapshot    = true
 
-  depends_on = [ aws_db_subnet_group.quizhero_db_subnet_group ]
+  depends_on = [ aws_db_subnet_group.db_subnet_group ]
 }
 
 # Output database connection details
