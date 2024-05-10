@@ -7,17 +7,12 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 resource "aws_db_parameter_group" "db_parameters" {
-  name        = "db_parameters"
+  name        = "db-parameters"
   family      = "postgres15"  // or whichever PostgreSQL version you're using
 
   parameter {
-    name  = "hba_file"
-    value = "pg_hba.conf"
-  }
-
-  parameter {
-    name  = "listen_addresses"
-    value = "*"
+    name  = "rds.force_ssl"
+    value = "0"
   }
 }
 
