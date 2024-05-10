@@ -1,8 +1,10 @@
 resource "aws_db_subnet_group" "quizhero_db_subnet_group" {
   name = "quizhero-db-subnet-group"
   subnet_ids = [
-    "subnet-00a06eebfd915e0b0",
-    "subnet-05d851a5d1b7e7201",
+    "subnet-07e2731634294e6cb",
+    "subnet-0b137902f4a66a56b",
+    "subnet-06f1d8653e42a9657",
+    "subnet-0af2492de458cb01a",
     ]
 }
 
@@ -18,7 +20,7 @@ resource "aws_db_instance" "postgres" {
   parameter_group_name   = "default.postgres15"
   publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.quizhero_db_subnet_group.name
-  vpc_security_group_ids = ["sg-099977c6b7814b467"]
+  vpc_security_group_ids = ["sg-07bd428dd3fd329a6"]
   storage_type           = "gp2"
   skip_final_snapshot    = true
 
