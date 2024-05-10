@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-  name = "quizhero-db-subnet-group"
+  name = "db-subnet-group"
   subnet_ids = [
     "subnet-084f1609a3253535e",
     "subnet-0a0072f0b6788185e"
