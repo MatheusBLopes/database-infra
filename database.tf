@@ -6,6 +6,21 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     ]
 }
 
+resource "aws_db_parameter_group" "db_parameters" {
+  name        = "db_parameters"
+  family      = "postgres15"  // or whichever PostgreSQL version you're using
+
+  parameter {
+    name  = "hba_file"
+    value = "pg_hba.conf"
+  }
+
+  parameter {
+    name  = "listen_addresses"
+    value = "*"
+  }
+}
+
 resource "aws_db_instance" "postgres" {
   identifier             = "quizhero"
   engine                 = "postgres"
@@ -15,7 +30,7 @@ resource "aws_db_instance" "postgres" {
   allocated_storage      = 10
   engine_version         = "15.6"
   instance_class         = "db.t3.micro"
-  parameter_group_name   = "default.postgres15"
+  parameter_group_name   = aws_db_parameter_group.db_parameters.name
   publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids = ["sg-03554f9ec2c87c30b"]
