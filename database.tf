@@ -25,7 +25,7 @@ resource "aws_db_instance" "postgres" {
   engine                 = "postgres"
   username               = "mainuser"
   password               = "mainpassword"
-  db_name                = "tech-challenge-db"
+  db_name                = "TechChallengeDb"
   allocated_storage      = 10
   engine_version         = "15.6"
   instance_class         = "db.t3.micro"
