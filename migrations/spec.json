@@ -1,0 +1,6 @@
+{
+    "scripts": [
+        "0001_create_table.sql",
+        "0002_insert_basic.sql"
+    ]
+}

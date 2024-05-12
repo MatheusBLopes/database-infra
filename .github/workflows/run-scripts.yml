@@ -1,0 +1,18 @@
+name: Run PostgreSQL scripts  
+on: workflow_dispatch
+
+jobs:
+  run_scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Read JSON and run scripts
+        run: |
+          scripts=$(jq -r '.scripts[]' migrations/spec.json)
+          for script in $scripts; do
+            psql -h ${{ secrets.DB_HOST }} -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -a -f $script -W ${{ secrets.DB_PASSWORD }}
+          done
+        working-directory: ${{ github.workspace }}

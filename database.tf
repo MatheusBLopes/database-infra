@@ -8,7 +8,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 
 resource "aws_db_parameter_group" "db_parameters" {
   name        = "db-parameters"
-  family      = "postgres15"  // or whichever PostgreSQL version you're using
+  family      = "postgres15"
 
   parameter {
     name  = "rds.force_ssl"
@@ -21,11 +21,11 @@ resource "aws_db_parameter_group" "db_parameters" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier             = "quizhero"
+  identifier             = "tech_challenge_db"
   engine                 = "postgres"
   username               = "mainuser"
   password               = "mainpassword"
-  db_name                = "quizhero"
+  db_name                = "tech_challenge_db"
   allocated_storage      = 10
   engine_version         = "15.6"
   instance_class         = "db.t3.micro"
@@ -37,9 +37,4 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot    = true
 
   depends_on = [ aws_db_subnet_group.db_subnet_group ]
-}
-
-# Output database connection details
-output "database_url" {
-  value = aws_db_instance.postgres.endpoint
 }
