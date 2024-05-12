@@ -21,11 +21,11 @@ resource "aws_db_parameter_group" "db_parameters" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier             = "tech_challenge_db"
+  identifier             = "tech-challenge-db"
   engine                 = "postgres"
   username               = "mainuser"
   password               = "mainpassword"
-  db_name                = "tech_challenge_db"
+  db_name                = "tech-challenge-db"
   allocated_storage      = 10
   engine_version         = "15.6"
   instance_class         = "db.t3.micro"
