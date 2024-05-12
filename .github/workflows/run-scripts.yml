@@ -13,6 +13,6 @@ jobs:
         run: |
           scripts=$(jq -r '.scripts[]' migrations/spec.json)
           for script in $scripts; do
-            psql -h ${{ secrets.DB_HOST }} -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -a -f $script -W ${{ secrets.DB_PASSWORD }}
+            psql -d ${{ secrets.DB_URL }} -a -f $script
           done
         working-directory: ${{ github.workspace }}
