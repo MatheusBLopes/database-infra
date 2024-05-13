@@ -1,6 +1,6 @@
 resource "aws_security_group" "db_security_group" {
   name   = "tech_challenge_db_sg"
-  vpc_id = "vpc-0bbbb454836718e5a"
+  vpc_id = "vpc-0d0cf6f7b8b9248af"
 
   ingress {
     from_port   = 0
