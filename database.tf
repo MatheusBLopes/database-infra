@@ -33,7 +33,7 @@ resource "aws_db_instance" "postgres" {
   parameter_group_name   = aws_db_parameter_group.db_parameters.name
   publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.security_group.id]
+  vpc_security_group_ids = [aws_security_group.db_security_group.id]
   storage_type           = "gp2"
   skip_final_snapshot    = true
 
