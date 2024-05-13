@@ -1,8 +1,9 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
   name = "db-subnet-group"
   subnet_ids = [
-    "subnet-07a371f0c2f8dd740",
-    "subnet-04b66e840b6cbaac3"
+    "subnet-0d5953e7e04e6970d",
+    "subnet-0b7e65f859f16dc91",
+    "subnet-0447ebf1903278f97"
     ]
 }
 
@@ -32,7 +33,7 @@ resource "aws_db_instance" "postgres" {
   parameter_group_name   = aws_db_parameter_group.db_parameters.name
   publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
-  vpc_security_group_ids = ["sg-0534bbcaa42a9f23b"]
+  vpc_security_group_ids = [aws_security_group.security_group]
   storage_type           = "gp2"
   skip_final_snapshot    = true
 
